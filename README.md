@@ -6,7 +6,6 @@ Gli algoritmi in questione sono rispettivamente quello di Dijkstra l'SPT e quell
 - [Julia version 1.7.\*](https://julialang.org/downloads/)
 - [Pluto library](https://github.com/fonsp/Pluto.jl)
 
-
-Progetto per il corso di Elements of Computational Modelling in Julia, facoltà di Informatica Uniroma2.
 ## Autori:
+Progetto per il corso di Elements of Computational Modelling in Julia, facoltà di Informatica Uniroma2 realizzato da:
 Leonardo Di Minco, Francesco Boccanfuso, Antonina Assunta Galofaro, Luca Del Rio
