@@ -32,7 +32,7 @@ md"""# Algoritmi per MST e SPT"""
 md"""
 Nel notebook è illustrato tramite grafici interattivi il funzionamento di alcuni dei principali algoritmi che, basandosi su un grafo di esempio G pesato, indiretto e connesso, restituiscono l'**Albero dei cammini minimi (SPT)** e il **Minimo albero ricoprente (MST)** correlati ad esso.
 
-Gli algoritmi in questione sono rispettivamente quello di **Dijkstra l'SPT** e quelli di **Prim, Reverse Delete e Kruskal per l'MST**  
+Gli algoritmi in questione sono rispettivamente quello di **Dijkstra l'SPT** e quelli di **Prim, Reverse Delete e Kruskal per l'MST.**  
 """
 
 # ╔═╡ 58ca638a-af7a-4fd6-975d-b725d147a107
@@ -84,22 +84,22 @@ md"""
 
 **Definizioni:** Sia G un grafo pesato  **(*diretto o non diretto*)** **$G(V,E,w)$** dove $V$ è l'insieme dei nodi, $E ⊆ V×V$ è l'insieme degli archi e $w$ funzione peso degli archi $w:E \to \mathbb{R}^+$.
 
-Il **costo C** di un cammino *$\pi = <v_0,v_1...v_k>$* da $u$ a $v$ è $C(\pi) = \sum_{i = 1}^{k} \ w(v_{i-1}, v_i)$.
+Il **costo C** di un cammino *$\pi = <v_0,v_1...v_k>$* è $C(\pi) = \sum_{i = 1}^{k} \ w(v_{i-1}, v_i)$.
 
 Un **cammino minimo** è quindi quello che ha costo **minore o uguale** a quello di ogni altro cammino con gli stessi vertici.
 
-**(*L’unione* di tutti i cammini minimi da un vertice *u* a tutti i vertici da esso raggiungibili nel grafo $G$ genera un sottografo $T$ detto albero dei cammini minimi con sorgente in u)** in cui, per ogni $v \in V$,  $C(\pi(u,v)_T = \pi(u,v)_G$
+**(*L’unione* di tutti i cammini minimi da un vertice *u* a tutti i vertici da esso raggiungibili nel grafo $G$ genera un sottografo $T$ detto albero dei cammini minimi con sorgente in u)** in cui, per ogni $v \in V$,  $C(\pi(u,v)_T = \pi(u,v)_G$.
 
-**Problema:** Trovare il sottografo $T$ dei cammini minimi in un grafo pesato G
+**Problema:** Trovare il sottografo $T$ dei cammini minimi in un grafo pesato G.
 """
 
 # ╔═╡ e7d0b91c-7e2c-45fa-9407-f39924312acd
 md"""
 ##### Dijkstra(G,nodoIniziale)
 
-**L'algoritmo di Dijkstra** si basa sul mantenere una **stima per eccesso**  delle distanze $D_{sv}$ dall'origine $s$ a ciascun nodo $v$, un insieme $X$ di nodi per i quali $D_{sv}$ è accurata e un albero dei cammini minimi $T$ verso i nodi in $X$ 
+**L'algoritmo di Dijkstra** si basa sul mantenere una **stima per eccesso**  delle distanze $D_{sv}$ dall'origine $s$ a ciascun nodo $v$, un insieme $X$ di nodi per i quali $D_{sv}$ è accurata e un albero dei cammini minimi $T$ verso i nodi in $X$.
 
-Ad ogni passo dell'algoritmo, aggiungeremo ad $X$ il nodo *j* in $V-X$ per il quale la stima è *minima*. La stima con cui il nodo è stato inserito in $X$ diventa la distanza $D_{sj}$, e aggiungeremo l'arco che fornisce il valore minimo a $T$
+Ad ogni passo dell'algoritmo, aggiungeremo ad $X$ il nodo *j* in $V-X$ per il quale la stima è *minima*. La stima con cui il nodo è stato inserito in $X$ diventa la distanza $D_{sj}$, e aggiungeremo l'arco che fornisce il valore minimo a $T$.
 
 Al termine dell'esecuzione dell'algoritmo avremo l'albero $T$ con i cammini minimi da *nodoIniziale* verso ciascun nodo.
 """
@@ -107,7 +107,7 @@ Al termine dell'esecuzione dell'algoritmo avremo l'albero $T$ con i cammini mini
 # ╔═╡ 0f112506-d940-4e90-8f4c-4fc2cb6f8ca0
 md"""
 #### Implementazione
-L'algoritmo è implementato utilizzando una **coda con priorità** fornita della libreria *DataStructures*, e la libreria *SimpleWeightedGraphs* per rappresentare il grafo pesato G, che nel nostro caso è indiretto e connesso
+L'algoritmo è implementato utilizzando una **coda con priorità** fornita della libreria *DataStructures*, e la libreria *SimpleWeightedGraphs* per rappresentare il grafo pesato G, che nel nostro caso è indiretto e connesso.
 
 All'inizio dell'esecuzione i valori di priorità di ciascun nodo nella coda saranno pari a **typemax(Float64)**, le loro distanze non sono ancora state stimate **(*Insert*)**.
 
@@ -244,7 +244,7 @@ md"""
 
 **Definizione:** Sia G un grafo **(*diretto o non diretto*)** **$G(V,E,w)$**, connesso e pesato dove $V$ è l'insieme dei nodi, $E ⊆ V×V$ è l'insieme degli archi e $w(u,v) ∈ \mathbb{R}^+$ sia una funzione peso per $G$.
 
-Uno **Spanning tree** è un albero con queste proprietà: è **connesso**, **aciclico**, **spanning** (copre tutti i nodi del grafo).
+Uno **Spanning tree** è un albero con queste proprietà: è **connesso**, **aciclico**, **ricoprente** (copre tutti i nodi del grafo).
 
 **Goal**: un albero $T ⊆ E$, che sia uno spanning tree di $G$, che minimizza il costo di T:
 
@@ -385,9 +385,9 @@ L'algoritmo inizia con la scelta randomica di un nodo del grafo, che sarà il no
 Viene inizializzata anche una coda di priorità con tutti i valori a infinito e un grafo T che sarà il nostro MST.
 
 A questo punto:
-- estraggo il minimo u dalla coda di priorità
-- tra tutti i nodi w adiacenti a u, scelgo l'arco (u,w) con costo minimo e con w non contenuto in T
-- inserisco w in T
+- estraggo il minimo u dalla coda di priorità.
+- tra tutti i nodi w adiacenti a u, scelgo l'arco (u,w) con costo minimo e con w non contenuto in T.
+- inserisco w in T.
 
 Il tutto viene ripetuto fintantoché la coda di priorità non è vuota.
 
@@ -404,7 +404,7 @@ md"""
 
 L'analisi del costo temporale coincide con quella dell'algoritmo di Dijkstra. 
 
-Il costo risultate, utilizzando un **Heap di Fibonacci** pertanto è $\mathcal{O}(m+ n\log{}n)$
+Il costo risultate, utilizzando un **Heap di Fibonacci** pertanto è $\mathcal{O}(m+ n\log{}n)$.
 
 """
 
@@ -445,9 +445,8 @@ Per quanto riguarda il tempo per le operazioni di union,
 su un singolo nodo il costo speso è $O({\log n})$ mentre in totale, il costo è 
 $O({n \log n})$.
 
-Se eseguiamo m find, n makeSet, e le al più n-1 union, 
+Se eseguiamo m find, n makeSet, e le al più n-1 union, l’intera sequenza di operazioni costa
 
-L’intera sequenza di operazioni costa
 $O(m+n+n \log n)=O(m+n \log n)$
 
 """
@@ -522,7 +521,7 @@ L'algoritmo di Kruskal usa un approccio greedy per trovare un $minumum$ $spannin
 
 Ordina gli archi secondo costi crescenti e costruisce un insieme ottimo di
 archi T scegliendo di volta in volta un arco di peso minimo che non
-forma cicli con gli archi già scelti
+forma cicli con gli archi già scelti.
 
 
 
@@ -543,7 +542,7 @@ stato scelto e, quindi, nessun nodo è stato collegato.
 Alla prima iterazione viene scelto il nodo (u, v) di peso minimo; questo
 viene posto in T (T è vuoto e quindi l’inserimento di (u, v) non può
 formare cicli) e gli insiemi {u} e {v} vengono sostituiti con l’insieme
-{u, v}
+{u, v}.
 
 Alla generica iterazione i, esaminiamo l’arco (x, y) con i-esimo costo che
 viene aggiunto alla soluzione T solo se i nodi x e y non appartengono
@@ -657,12 +656,12 @@ L'algoritmo è implementato utilizzando la libreria *SimpleWeightedGraphs* per r
 
 L'algoritmo ha questa struttura:
 - Definisce $T$ come $T$ = $E$.
-- Ordina gli archi in ordine decrescente di peso
-- per ogni arco $e=(u,v)$:
+- Ordina gli archi in ordine decrescente di peso.
+- Per ogni arco $e=(u,v)$:
    - rimuove $e$ da T e verifica se T è ancora connesso:
      - se non lo è più reinserisce $e$ in T.
    
-La verificare se il grafo è connesso viene eseguita dalla funzione è_connesso(T), che in pratica è una visita in ampiezza (BFS) modificata che conta il numero di nodi che visita e alla fine li confronta con il numero di nodi di T. Se i nodi visitati sono uguali a |V| significa che T è connesso.
+La verifica che il grafo sia connesso viene eseguita dalla funzione è_connesso(T), che in pratica è una visita in ampiezza (BFS) modificata che conta il numero di nodi che visita e alla fine li confronta con il numero di nodi di T. Se i nodi visitati sono uguali a |V| significa che T è connesso.
 """
 
 # ╔═╡ 6139ed81-d841-44dd-b49c-ccf37add8d7e
