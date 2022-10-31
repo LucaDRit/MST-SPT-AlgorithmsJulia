@@ -42,7 +42,7 @@ md"""**Grafo di esempio**"""
 md"""
 Attraverso i seguenti sliders è possibile modificare il numero $|V|$ di nodi e $|E|$ di archi nel grafo su cui saranno dimostrati gli algoritmi.
 
-Il numero di nodi è limitato a 10, mentre $|E|$ va da $\binom{N-1}{2} +1$ ossia il numero minimo di archi perchè il grafo sia connesso, a $\frac{(N(N-1))}{2}$ il massimo numero di archi nel grafo con N nodi.
+Il numero di nodi è limitato a 10, mentre $|E|$ va da $\binom{N-1}{2} +1$ ossia il numero minimo di archi perchè il grafo sia necessariamente connesso, a $\frac{(N(N-1))}{2}$ il massimo numero di archi nel grafo con N nodi.
 
 Queste limitazioni sono state scelte per meglio mostrare il funzionamento degli algoritmi, e non influenzano il loro funzionamento.
 """
